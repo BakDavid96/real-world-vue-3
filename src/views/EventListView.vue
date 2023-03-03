@@ -6,13 +6,19 @@ import EventService from '@/services/EventService.js'
 const events = ref(null)
 
 onMounted(() => {
-  EventService.getEvents()
+  EventService.getEvents(2, props.page)
     .then((response) => {
       events.value = response.data
     })
     .catch((error) => {
       console.log(error)
     })
+})
+
+const props = defineProps({
+  page: {
+    required: true
+  }
 })
 </script>
 
